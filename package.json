@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/hethus/Front_m3/issues"
   },
-  "homepage": "https://github.com/hethus/Front_m3#readme",
-  "dependencies": {
-    "cross-fetch": "^3.1.5"
-  }
+  "homepage": "https://github.com/hethus/Front_m3#readme"
 }
