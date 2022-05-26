@@ -18,12 +18,16 @@
         <img src="./assets/icons/sacola.svg" width="40px" alt="">
       </div>
     </header>
+    
+    <div class="NovaPaleta__container">
+      <button onclick="mostrarModalCriacao()" class="botao-padrao botao-cadastro">Cadastrar Paleta</button>
+    </div>
 
     <h2>Pesquisar Paleta</h2>
     <div class="PesquisarPaleta">
       <div class="PesquisarPaleta__container">
-        <input type="number" id="InputIdPaleta" placeholder="Digite o ID da Paleta e clique em escolher!">
-        <button onclick="imprimirUmaPaletaPorId()">Escolher!</button>
+        <input id="InputBuscaSaborPaleta" placeholder="Digite o sabor da Paleta e clique em escolher!">
+        <button class="botao-padrao" onclick="imprimirUmaPaletaPorId()">Escolher!</button>
         <div class="PaletaPesquisada" id="paletaPesquisada"></div>
       </div>
     </div>
@@ -31,6 +35,23 @@
     <h2>Paletas Disponíveis:</h2>
     <div class="Home__container">
       <div class="PaletaLista" id="paletaList">
+      </div>
+    </div>
+
+    <div class="fundo-modal" id="fundoModal">
+      <div class="modal">
+        <div class="cabecalho-modal">
+          <h2>Cadastrar uma paleta</h2>
+          <span onclick="esconderModalCriacao()">X</span>
+        </div>
+
+        <div class="corpo-modal">
+          <input class="input-sabor" id="inputSabor" placeholder="Sabor da paleta">
+          <input class="input-descricao" id="inputDescricao" placeholder="Descrição da paleta">
+          <input type="number" class="input-preco" id="inputPreco" placeholder="Preço da paleta">
+          <input class="input-foto" id="inputFoto" placeholder="Link da foto da paleta">
+          <button class="botao-modal" onclick="cadastrarNovaPaleta()">Cadastrar</button>
+        </div>
       </div>
     </div>
   </div>

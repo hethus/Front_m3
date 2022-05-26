@@ -1,14 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Exo", sans-serif;
+}
 
 body,
 html {
-  margin: 0;
-  padding: 0;
   width: 100%;
   min-height: 100vh;
   overflow: auto;
   background-color: rgb(255, 255, 255);
-  font-family: sans-serif;
 }
 
 .Home {
@@ -31,9 +32,16 @@ html {
   display: flex;
   justify-content: space-around;
   color: rgb(0, 0, 0);
+  margin-top: 2rem;
 }
 
-.Home > div {
+.Home > .PesquisarPaleta {
+  display: flex;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+}
+
+.Home > .Home__container {
   display: flex;
   justify-content: center;
   color: rgb(0, 0, 0);
@@ -70,7 +78,7 @@ html {
 }
 
 .CartaoPaleta {
-  font-family: 'Exo';
+  font-family: "Exo";
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   padding: 10px;
@@ -109,7 +117,7 @@ html {
   font-size: 0.85em;
 }
 
-.CartaoPaleta__infos > span{
+.CartaoPaleta__infos > span {
   color: darkviolet;
 }
 
@@ -134,7 +142,7 @@ html {
 .Header > .Header__container > div {
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: x-large;
   background-color: #ffffff4d;
   width: 16vw;
   height: 7vh;
@@ -145,7 +153,7 @@ html {
 .Header > .Header__container > div > img {
   position: absolute;
   left: -25px;
-  top:-10px;
+  top: -10px;
 }
 
 .Header > .Header__container > div > h2 {
@@ -156,41 +164,123 @@ html {
 .MensagemDeErro {
   color: red;
   margin: 2rem;
-  font-size: 1.5rem;
+  font-size: larger;
 }
 
 .PesquisarPaleta {
   width: calc(20vw - 60px);
   padding: 0 40vw;
-  height: 50vh;
 }
 
 .PesquisarPaleta > .PesquisarPaleta__container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 30vh;
 }
 
-.PesquisarPaleta > .PesquisarPaleta__container > input{
+.PesquisarPaleta > .PesquisarPaleta__container > input {
   border: none;
   margin: 1rem 0;
   padding: 8px 6px;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
-.PesquisarPaleta > .PesquisarPaleta__container > button{
-  background-color: #ffffff4d;
-  border: none;
+.botao-padrao {
+  background-color: transparent;
   border-radius: 3px;
-  border: 2px solid #029669;
+  border: 2px solid #9400d3;
+  color: #9400d3;
   font-size: larger;
   font-weight: 700;
   height: 33px;
-  
+  cursor: pointer;
 }
 
-.PesquisarPaleta > .PaletaPesquisada {
+.botao-cadastro {
+  padding: 0.1rem 5rem;
+  font-size: medium;
+}
+
+.botao-padrao:hover {
+  color: #50c5ee;
+  background-color: #9400d3;
+}
+
+.NovaPaleta__container {
+  width: 100%;
+  height: 5vh;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.fundo-modal {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000004d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fundo-modal > .modal {
+  width: 30vw;
+  height: 42vh;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.fundo-modal > .modal > .cabecalho-modal {
+  width: calc(100% - 40px);
+  height: 7vh;
+  background-color: #50c5ee;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  user-select: none;
+}
+
+.fundo-modal > .modal > .cabecalho-modal > span {
+  cursor: pointer;
+}
+
+.fundo-modal > .modal > .corpo-modal {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 14px);
+  padding: 0 7px;
+  align-items: center;
+}
+
+.fundo-modal > .modal > .corpo-modal > input {
+  width: calc(100% - 14px);
+  border: 1px solid #0000002d;
+  border-radius: 5px;
+  padding: 7px;
+  margin-top: 7px;
+}
+
+.fundo-modal > .modal > .corpo-modal > .input-descricao {
+  height: 8vh;
+}
+
+.fundo-modal > .modal > .corpo-modal > button {
+  width: 9vw;
+  height: 4vh;
+  margin-top: 7px;
+  border: 1px solid #50c5ee;
+  color: #50c5ee;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.fundo-modal > .modal > .corpo-modal > button:hover {
+  color: white;
+  background-color: #50c5ee;
 }

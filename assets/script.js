@@ -1,32 +1,11 @@
-/* async function listarTodasAsPaletas() {
-  const response = await fetch("http://localhost:3000/paletas/listar-todas")
-
-  const paletas = await response.json()
-
-  paletas.forEach((paleta) => {
-    document.getElementById("paletaList").insertAdjacentHTML(
-      "beforeend",
-      `<div class="PaletaListaItem">
-        <div>
-            <div class="PaletaListaItem__sabor">${paleta.sabor}</div>
-            <div class="PaletaListaItem__preco">R$ ${paleta.preco.toFixed(2)}</div>
-            <div class="PaletaListaItem__descricao">${paleta.descricao}</div>
-          </div>
-            <img class="PaletaListaItem__foto" src=${
-              paleta.foto
-            } alt=${`Paleta de ${paleta.sabor}`} />
-        </div>`
-    );
-  });
-}
-
-listarTodasAsPaletas() */
-
 const baseUrl = "http://localhost:3000";
+let listaDePaleta = [];
 
 const listarTodasAsPaletas = async () => {
   const resposta = await fetch(`${baseUrl}/paletas/listar-todas`);
   const paletas = await resposta.json();
+
+  listaDePaleta = paletas
 
   return paletas;
 }
@@ -124,9 +103,22 @@ imprimirTodasPaletas();
 
 const imprimirUmaPaletaPorId = async () => {
   document.getElementById("paletaPesquisada").innerHTML = "";
-  const input = document.getElementById("InputIdPaleta"); 
-  const id = input.value;
+  const input = document.getElementById("InputBuscaSaborPaleta"); 
+  const sabor = input.value;
 
+  const paletaSelecionada = listaDePaleta.find((paleta) => paleta.sabor === sabor);
+
+  if (paletaSelecionada === undefined) {
+    const mensagemDeErro = document.createElement("p");
+    mensagemDeErro.id = "mensagemDeErro";
+    mensagemDeErro.classList.add("MensagemDeErro");
+    mensagemDeErro.innerText = "Nenhuma paleta encontrada!";
+
+    document.getElementById("paletaPesquisada").appendChild(mensagemDeErro);
+
+  }
+
+  const id = paletaSelecionada._id;
   const paletaPesquisa = await buscarPaletaId(id);
 
   if (paletaPesquisa === false) {
@@ -150,4 +142,42 @@ const imprimirUmaPaletaPorId = async () => {
     </div>
     `;
   }
+}
+
+const mostrarModalCriacao = () => {
+  document.getElementById("fundoModal").style.display = "flex";
+}
+
+const esconderModalCriacao = () => {
+  document.getElementById("inputSabor").value = "";
+  document.getElementById("inputPreco").value = "";
+  document.getElementById("inputDescricao").value = "";
+  document.getElementById("inputFoto").value = "";
+
+  document.getElementById("fundoModal").style.display = "none";
+}
+
+const cadastrarNovaPaleta = async () => {
+  const sabor = document.getElementById("inputSabor").value;
+  const preco = document.getElementById("inputPreco").value;
+  const descricao = document.getElementById("inputDescricao").value;
+  const foto = document.getElementById("inputFoto").value;
+
+  const paleta = await criarPaleta(sabor, descricao, foto, preco);
+
+  document.getElementById("paletaList").insertAdjacentHTML(
+    "beforeend",
+    `
+    <div class="CartaoPaleta">
+      <div class="CartaoPaleta__infos">
+        <h4>${paleta.sabor}</h4>
+        <span>R$${paleta.preco.toFixed(2)}</span>
+        <p>${paleta.descricao}</p>
+      </div>
+      <img src="./${paleta.foto}" alt="Paleta sabor ${paleta.sabor}" class="CartaoPaleta__foto"/>
+    </div>
+    `
+  );
+
+  esconderModalCriacao();
 }
