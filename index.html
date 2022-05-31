@@ -1,60 +1,155 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./assets/style.css">
-  <title>El Geladon</title>
-</head>
-<body>
-  <div class="Home">
-    <header class="Header">
-      <div class="Header__container">
-        <div>
-          <img src="./assets/icons/logo.svg" width="70px" alt="">
-          <h2>El Geladon</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Geladon</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <div class="Home">
+      <header class="Header">
+        <div class="Header__container">
+          <div>
+            <img src="./assets/icons/logo.svg" width="70px" />
+            <h2>El Geladon</h2>
+          </div>
+          <img src="./assets/icons/sacola.svg" width="40px" />
         </div>
-        <img src="./assets/icons/sacola.svg" width="40px" alt="">
+      </header>
+
+      <div class="NovaPaleta__container">
+        <button
+          onclick="mostrarModalCriacao()"
+          class="botao-padrao botao-cadastro"
+        >
+          Cadastrar Nova Paleta
+        </button>
       </div>
-    </header>
-    
-    <div class="NovaPaleta__container">
-      <button onclick="mostrarModalCriacao()" class="botao-padrao botao-cadastro">Cadastrar Paleta</button>
-    </div>
 
-    <h2>Pesquisar Paleta</h2>
-    <div class="PesquisarPaleta">
-      <div class="PesquisarPaleta__container">
-        <input id="InputBuscaSaborPaleta" placeholder="Digite o sabor da Paleta e clique em escolher!">
-        <button class="botao-padrao" onclick="imprimirUmaPaletaPorId()">Escolher!</button>
-        <div class="PaletaPesquisada" id="paletaPesquisada"></div>
-      </div>
-    </div>
-
-    <h2>Paletas Disponíveis:</h2>
-    <div class="Home__container">
-      <div class="PaletaLista" id="paletaList">
-      </div>
-    </div>
-
-    <div class="fundo-modal" id="fundoModal">
-      <div class="modal">
-        <div class="cabecalho-modal">
-          <h2>Cadastrar uma paleta</h2>
-          <span onclick="esconderModalCriacao()">X</span>
-        </div>
-
-        <div class="corpo-modal">
-          <input class="input-sabor" id="inputSabor" placeholder="Sabor da paleta">
-          <input class="input-descricao" id="inputDescricao" placeholder="Descrição da paleta">
-          <input type="number" class="input-preco" id="inputPreco" placeholder="Preço da paleta">
-          <input class="input-foto" id="inputFoto" placeholder="Link da foto da paleta">
-          <button class="botao-modal" onclick="cadastrarNovaPaleta()">Cadastrar</button>
+      <h2>Pesquisar Paleta</h2>
+      <div class="PesquisarPaleta">
+        <div class="PesquisarPaleta__container">
+          <input
+            id="inputBuscaSaborPaleta"
+            placeholder="Digite o sabor da Paleta e clique em escolher"
+          />
+          <button class="botao-padrao" onclick="imprimirUmaPaletaPorId()">
+            Escolher
+          </button>
+          <div class="PaletaPesquisada" id="paletaPesquisada"></div>
         </div>
       </div>
+
+      <h2>Paletas Disponíveis:</h2>
+      <div class="Home__container">
+        <div class="PaletaLista" id="paletaList"></div>
+      </div>
+
+      <div class="fundo-modal" id="fundoModalCriacao">
+        <div class="modal">
+          <div class="cabecalho-modal">
+            <h2>Cadastrar uma paleta</h2>
+            <span onclick="esconderModalCriacao()">X</span>
+          </div>
+          <div class="corpo-modal">
+            <input
+              class="input-sabor"
+              placeholder="Sabor da paleta"
+              id="inputSabor"
+            />
+            <input
+              type="number"
+              class="input-preco"
+              id="inputPreco"
+              placeholder="Preço da paleta"
+            />
+            <textarea
+              class="input-descricao"
+              placeholder="Descrição da paleta"
+              id="inputDescricao"
+              rows="4"
+            ></textarea>
+            <input
+              class="input-foto"
+              placeholder="Link da foto da paleta"
+              id="inputFoto"
+            />
+            <button class="botao-modal" onclick="cadastrarNovaPaleta()">
+              Cadastrar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fundo-modal" id="fundoModalExclusao">
+        <div class="modal">
+          <div class="cabecalho-modal">
+            <h2>Confirmação</h2>
+            <span onclick="esconderModalExclusao()">X</span>
+          </div>
+          <div class="corpo-modal corpo-modal-exclusao">
+            <h2>Deseja realmente apagar essa paleta</h2>
+            <div>
+              <button
+                class="botao-cancelar-excluir-paleta"
+                onclick="esconderModalExclusao()"
+              >
+                Não
+              </button>
+              <button
+                class="botao-confirmar-excluir-paleta"
+                id="botaoConfirmarExclusao"
+              >
+                Sim
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fundo-modal" id="fundoModalEdicao">
+        <div class="modal">
+          <div class="cabecalho-modal">
+            <h2>Atualizar uma paleta</h2>
+            <span onclick="esconderModalEdicao()">X</span>
+          </div>
+          <div class="corpo-modal">
+            <input
+              class="input-sabor"
+              placeholder="Sabor da paleta"
+              id="inputSaborEdicao"
+            />
+            <input
+              type="number"
+              class="input-preco"
+              id="inputPrecoEdicao"
+              placeholder="Preço da paleta"
+            />
+            <textarea
+              class="input-descricao"
+              placeholder="Descrição da paleta"
+              id="inputDescricaoEdicao"
+              rows="4"
+            ></textarea>
+            <input
+              class="input-foto"
+              placeholder="Link da foto da paleta"
+              id="inputFotoEdicao"
+            />
+            <button class="botao-modal" id="botaoConfirmarEdicao">
+              Atualizar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="notificacao" id="notificacao">
+        <span id="notificacaoSpan"></span>
+        <p id="notificacaoP"></p>
+      </div>
     </div>
-  </div>
-</body>
-<script src="./assets/script.js"></script>
+    <script src="./assets/script.js"></script>
+  </body>
 </html>
